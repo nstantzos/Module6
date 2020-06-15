@@ -33,6 +33,8 @@ public class Main extends Application implements EventHandler<ActionEvent>
 {
 	// Declare global Map for use in the start method
 	static Map<String, Integer> sortedWords;
+	
+	// Global flag to be accessed by mutliple methods
 	public boolean wordWasFound;
 	
 	@Override
@@ -44,6 +46,7 @@ public class Main extends Application implements EventHandler<ActionEvent>
 		// Create fetched words object to store key and value for user defined search
 		FetchedWords fetchedWords = new FetchedWords();
 	    
+		// Create a text box
 		TextField wordEntry = new TextField();
 		
 		Label mainSceneText = new Label("Enter a word. Then click the button to calculate how often"
@@ -103,19 +106,22 @@ public class Main extends Application implements EventHandler<ActionEvent>
 		
 		System.out.println();
 		
-		//StackPane layout = new StackPane();
+		// Vertical box for the main scene
 		VBox mainPage = new VBox(10);
+		
+		// Add controls to the vertical box and format the padding
 		mainPage.getChildren().addAll(mainSceneText,wordEntry, wordStatisticsLabel,button2,blankLabel,button);
 		mainPage.setPadding(new Insets(20,20,20,20));
 		
+		// Add the vertical box to the main scene and set the dimensions
 		Scene scene = new Scene(mainPage, 300, 300);
 		mainSceneText.prefHeightProperty().bind(scene.heightProperty());
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("The Raven Word Count Statistics");
-
 		primaryStage.show();
 	}
 
+	// Method for constructing the bar chart to be displayed after the user clicks a button
 	private Scene BarChartConfiguration() {
 		// Create axes
 	    CategoryAxis xAxis    = new CategoryAxis();
@@ -161,6 +167,7 @@ public class Main extends Application implements EventHandler<ActionEvent>
 		launch(args);
 	}
 	
+	// Method to handle sorting within the dictionary (map)
 	// Method that sorts the dictionary
 	private static Map<String, Integer> SortDictionary(Map<String, Integer> counterMap) 
 	{
@@ -174,6 +181,8 @@ public class Main extends Application implements EventHandler<ActionEvent>
 		                LinkedHashMap::new));
 		return sorted;
 	}
+	
+	// Method to print dictionary to console window. Future feature: print dictionary to .csv file
 
 	// Method that prints the sorted dictionary to the console window
 	private static void PrintDictionaryToConsole(Map<String, Integer> sorted) 
@@ -190,6 +199,7 @@ public class Main extends Application implements EventHandler<ActionEvent>
 	}
 
 		
+	// Method to parse poem text
 	// Method that reads URL object and parses text into a hash map. Lots of extraneous characters/text must be removed
 	private static Map<String, Integer> ParseText() throws MalformedURLException, IOException 
 	{
@@ -442,6 +452,7 @@ public class Main extends Application implements EventHandler<ActionEvent>
 		
 	}
 	
+	// Method to search user-defined word
 	// Method to search the map for the user-entered word. This method returns a bool flag, which
 	// indicates if the entered word was found. If yes, it updates a label in the GUI with the word
 	// frequency. 
@@ -449,13 +460,17 @@ public class Main extends Application implements EventHandler<ActionEvent>
 	{
 		try 
 		{
-			String word = input.getText();	
+			// Get text from the text box
+			String word = input.getText();
+			
+			// Print a message to the console window affirming the entered word with the user
 			System.out.println("Calculating frequency of " + word + " within 'The Raven'...");
 			
 			if(sortedWords.containsKey(word))
 			{
+				// Retrieve frequency count from map and print it to the console
 				fetchedWords.Value = sortedWords.get(word);
-				System.out.println(fetchedWords.Value);
+				System.out.println("The entered word appears " + fetchedWords.Value + " times.");
 				return true;
 			}
 			else
