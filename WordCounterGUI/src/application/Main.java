@@ -34,7 +34,7 @@ public class Main extends Application implements EventHandler<ActionEvent>
 	// Declare global Map for use in the start method
 	static Map<String, Integer> sortedWords;
 	
-	// Global flag to be accessed by mutliple methods
+	// Global flag to be accessed by multiple methods
 	public boolean wordWasFound;
 	
 	@Override
@@ -81,7 +81,7 @@ public class Main extends Application implements EventHandler<ActionEvent>
 
 				// A bool flag is returned after calling the method to search the map for the word
 				// entered by the user
-				wordWasFound = WordSearch(wordEntry, wordEntry.getText(), sortedWords, fetchedWords);
+				wordWasFound = WordSearch(wordEntry.getText(), sortedWords, fetchedWords);
 				try
 				{
 					// Check if the word that the user entered exists in the map
@@ -154,7 +154,7 @@ public class Main extends Application implements EventHandler<ActionEvent>
 		return sceneTwo;
 	}
 	
-	public static void main(String[] args) throws Exception
+	public void main(String[] args) throws Exception
 	{
 		// Call method to read in URL object and parse text into a dictionary/hash map
 		Map<String, Integer> counterMap = ParseText();
@@ -169,7 +169,7 @@ public class Main extends Application implements EventHandler<ActionEvent>
 	
 	// Method to handle sorting within the dictionary (map)
 	// Method that sorts the dictionary
-	private static Map<String, Integer> SortDictionary(Map<String, Integer> counterMap) 
+	public Map<String, Integer> SortDictionary(Map<String, Integer> counterMap) 
 	{
 		// Sort the map in decreasing order of value
 		Map<String, Integer>sorted = counterMap
@@ -456,12 +456,12 @@ public class Main extends Application implements EventHandler<ActionEvent>
 	// Method to search the map for the user-entered word. This method returns a bool flag, which
 	// indicates if the entered word was found. If yes, it updates a label in the GUI with the word
 	// frequency. 
-	private boolean WordSearch(TextField input, String message,Map<String, Integer> sortedWords, FetchedWords fetchedWords) 
+	public boolean WordSearch(String inputValue,Map<String, Integer> sortedWords, FetchedWords fetchedWords) 
 	{
 		try 
 		{
 			// Get text from the text box
-			String word = input.getText();
+			String word = inputValue;
 			
 			// Print a message to the console window affirming the entered word with the user
 			System.out.println("Calculating frequency of " + word + " within 'The Raven'...");
