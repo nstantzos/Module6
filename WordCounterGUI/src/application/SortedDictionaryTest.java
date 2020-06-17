@@ -31,12 +31,16 @@ class SortedDictionaryTest
 		Map.Entry<String,Integer> unsortedEntry = unsortedWords.entrySet().iterator().next();
 		
 		// Print the first entry of each list (unsorted and sorted) to console
-		System.out.println(unsortedEntry.getKey());
-		System.out.println(key);
+		System.out.println("Unsorted map first entry: ");
+		System.out.println(unsortedEntry.getKey() + ", " + unsortedEntry.getValue());
+		System.out.println();
+		System.out.println("Sorted map first entry: ");
+		System.out.println(key + ", " + value);
 		
 		// If the result is not equal to dog, then the test fails (this means that the map was
 		// not sorted properly)
 		assertEquals("Dog", key);
+		assertEquals("4", value);
 	}
 
 }
