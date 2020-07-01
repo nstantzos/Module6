@@ -13,9 +13,6 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.net.*;
@@ -29,6 +26,18 @@ import java.util.LinkedHashMap;
  
 import static java.util.stream.Collectors.*;
 
+/**
+ * The purpose of this program is to read in text from a website that contains 
+ * the poem "The Raven" by Edgar Allan Poe and count the number of occurrences 
+ * of each word. The user will be presented with a main window in which they 
+ * can enter a word into a text box and be given the frequency count of that 
+ * word within "The Raven". The user can also click a button that will display 
+ * a bar chart with the top 20 most frequently occurring words. The full 
+ * frequency results are also displayed in the console window.
+ * @author NickS
+ * @version 4.0.0
+ *
+ */
 public class Main extends Application implements EventHandler<ActionEvent> 
 {
 	// Declare global Map for use in the start method
@@ -122,7 +131,8 @@ public class Main extends Application implements EventHandler<ActionEvent>
 	}
 
 	// Method for constructing the bar chart to be displayed after the user clicks a button
-	private Scene BarChartConfiguration() {
+	private Scene BarChartConfiguration() 
+	{
 		// Create axes
 	    CategoryAxis xAxis    = new CategoryAxis();
 	    xAxis.setLabel("Word");
@@ -154,7 +164,12 @@ public class Main extends Application implements EventHandler<ActionEvent>
 		return sceneTwo;
 	}
 	
-	public void main(String[] args) throws Exception
+	/**
+	 * Main code block, can throw an exception for invalid user input.
+	 * @param args Initial args. Not used.
+	 * @throws Exception
+	 */
+	public static void main(String[] args) throws Exception
 	{
 		// Call method to read in URL object and parse text into a dictionary/hash map
 		Map<String, Integer> counterMap = ParseText();
@@ -167,9 +182,14 @@ public class Main extends Application implements EventHandler<ActionEvent>
 		launch(args);
 	}
 	
-	// Method to handle sorting within the dictionary (map)
-	// Method that sorts the dictionary
-	public Map<String, Integer> SortDictionary(Map<String, Integer> counterMap) 
+
+	/**
+	 * Method to handle sorting within the dictionary (map), such that the resulting map is sorted
+	 * from highest to lowest frequency words.
+	 * @param counterMap The map to be sorted. Should contain strings as keys and integers as values.
+	 * @return Returns a sorted map (string, integer) in decreasing value order.
+	 */
+	public static Map<String, Integer> SortDictionary(Map<String, Integer> counterMap) 
 	{
 		// Sort the map in decreasing order of value
 		Map<String, Integer>sorted = counterMap
@@ -182,9 +202,10 @@ public class Main extends Application implements EventHandler<ActionEvent>
 		return sorted;
 	}
 	
-	// Method to print dictionary to console window. Future feature: print dictionary to .csv file
-
-	// Method that prints the sorted dictionary to the console window
+	/**
+	 * Method to print dictionary to console window. Future feature: print dictionary to .csv file
+	 * @param sorted Sorted (descending value order) map containing string keys and integer values.
+	 */
 	private static void PrintDictionaryToConsole(Map<String, Integer> sorted) 
 	{
 		// Format the console text into columns
@@ -199,8 +220,15 @@ public class Main extends Application implements EventHandler<ActionEvent>
 	}
 
 		
-	// Method to parse poem text
-	// Method that reads URL object and parses text into a hash map. Lots of extraneous characters/text must be removed
+	/**
+	 * Method that reads URL object and parses text into a hash map. Lots 
+	 * of extraneous characters/text must be removed
+	 * @return Returns an unsorted map of string keys and integer values. 
+	 * The keys represent every word that appears in the poem, while the 
+	 * values represent the number of times they appear in the poem.
+	 * @throws MalformedURLException Thrown when the specified URL is invalid.
+	 * @throws IOException Thrown when errors occur in opening the URL stream.
+	 */
 	private static Map<String, Integer> ParseText() throws MalformedURLException, IOException 
 	{
 			// Load URL object using specified website.
@@ -443,7 +471,9 @@ public class Main extends Application implements EventHandler<ActionEvent>
 	}
 
 	@Override
-	
+	/**
+	 * Auto-generated code. Does not serve any functional purpose
+	 */
 	public void handle(ActionEvent arg0) 
 	{
 		// TODO Auto-generated method stub
@@ -456,7 +486,16 @@ public class Main extends Application implements EventHandler<ActionEvent>
 	// Method to search the map for the user-entered word. This method returns a bool flag, which
 	// indicates if the entered word was found. If yes, it updates a label in the GUI with the word
 	// frequency. 
-	public boolean WordSearch(String inputValue,Map<String, Integer> sortedWords, FetchedWords fetchedWords) 
+	/**
+	 * Method to search the map for the user-entered word. This method returns a bool flag, which
+	 * indicates if the entered word was found. If yes, it updates a label in the GUI with the word
+	 * frequency. 
+	 * @param inputValue Parameter passed to method to retrieve word that user entered in the GUI text box.
+	 * @param sortedWords The map containing sorted keys and values (words and frequencies) from the poem.
+	 * @param fetchedWords Class containing fields to retrieve key value pairs from the sorted list.
+	 * @return Returns a boolean to indicate if the entered word was found in the map.
+	 */
+	public boolean WordSearch(String inputValue, Map<String, Integer> sortedWords, FetchedWords fetchedWords) 
 	{
 		try 
 		{

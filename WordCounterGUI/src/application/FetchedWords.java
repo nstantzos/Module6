@@ -1,7 +1,10 @@
 package application;
 
-import javafx.beans.value.ObservableValue;
-
+/**
+ * Class for retrieving keys and values from the sorted map.
+ * @author NickS
+ *
+ */
 public class FetchedWords 
 {
 

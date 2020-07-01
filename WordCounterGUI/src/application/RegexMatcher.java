@@ -1,6 +1,11 @@
 package application;
 
-
+/**
+ * This class is intended to be a container for strings that are used in 
+ * the main program's regular expression text parsing.
+ * @author NickS
+ *
+ */
 public class RegexMatcher 
 {
 	String PoemBegin;
@@ -12,6 +17,9 @@ public class RegexMatcher
 	String ItalicsAfter;
 	String MDashAfter;
 	
+	/**
+	 * Contains definitions of special character sequences to be used by regex processors in the main code block.
+	 */
 	public RegexMatcher() 
 	{
 		// Starting line of poem text

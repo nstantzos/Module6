@@ -6,6 +6,11 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Test class for the SortDictionary method in main.
+ * @author NickS
+ *
+ */
 class SortedDictionaryTest 
 {
 

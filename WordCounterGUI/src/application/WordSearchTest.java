@@ -6,7 +6,13 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
-class WordSearchTest {
+/**
+ * Test class for the WordSearch method in main. 
+ * @author NickS
+ *
+ */
+class WordSearchTest 
+{
 
 	@Test
 	void test() 
